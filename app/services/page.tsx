@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const services = [
   {
@@ -31,11 +32,12 @@ export default function Services() {
             key={i}
             className="glass group rounded-2xl overflow-hidden hover:scale-105 transition bg-gray-900"
           >
+            <Link href={"services/1"}>
             <Image src={s.img} 
             className="h-52 w-full object-cover group-hover:scale-110 transition duration-500 " 
             width={1000} height={1000} loading="eager" 
             alt={""}
-            />
+            /></Link>
 
             <div className="p-6">
               <h3 className="text-xl font-semibold">{s.title}</h3>

@@ -35,7 +35,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Sidebar/>
         <Navbar/>
-        <main>
+        <main className="pt-12">
            {children}
            <FloatingWA/>
         </main>

@@ -7,14 +7,14 @@ const projects = [
     desc: "Sistem booking penginapan",
     img: "https://media.istockphoto.com/id/2186780950/photo/software-engineers-collaborating-on-a-project-analyzing-code-on-computer-monitors-in-office.webp?a=1&b=1&s=612x612&w=0&k=20&c=JvSdMT4MBBhWUzNiP2hJbB_Bm5KN-sNv0HQbAUnMPbU=",
     tech: "React, Express, Supabase",
-    link: "#",
+    link: "/projects/1",
   },
   {
     title: "Company Profile",
     desc: "Website perusahaan modern",
     img: "https://images.pexels.com/photos/33572895/pexels-photo-33572895.jpeg",
     tech: "Vite, Tailwind",
-    link: "#",
+    link: "projects/2",
   },
   {
     title: "Admin Dashboard",
