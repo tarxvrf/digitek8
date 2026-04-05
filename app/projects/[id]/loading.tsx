@@ -1,3 +1,4 @@
+"use client"
 import SkeletonProjectDetail from "@/components/ui/SkeletonProjectDetail";
 
 
