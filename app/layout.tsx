@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "membangun website scalable",
+  title: "digitek8",
   description: "membangun website dinamis",
   keywords:["Jasa Pembuatan Website","Websiste murah","Jasa Optimasi Web","Website cepat responsive dan Scalable"]
 };
