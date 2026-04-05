@@ -43,6 +43,7 @@ export function ProjectList() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  loading="eager"
                   className="object-cover"
                 />
               </div>
@@ -73,13 +74,14 @@ export default function ProjectDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-black text-white">
+    <div className="min-h-screen bg-linear-to-br from-gray-950 to-black text-white">
       {/* HERO IMAGE */}
       <div className="relative h-[50vh]">
         <Image
           src={project.image}
           alt={project.title}
           fill
+          loading="eager"
           className="object-cover opacity-40"
         />
       </div>
@@ -111,6 +113,7 @@ export default function ProjectDetailPage() {
               src={project.image}
               alt={project.title}
               fill
+              loading="eager"
               className="object-cover"
             />
           </div>
