@@ -1,7 +1,7 @@
 import { MessageCircle } from "lucide-react";
 
 export default function FloatingWA() {
-  const phoneNumber = "085693397146"; // ganti nomor kamu
+  const phoneNumber = "6285693397146"; // ganti nomor kamu
   const message = "Halo, saya tertarik dengan jasa Anda";
 
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
