@@ -1,3 +1,5 @@
+"use client"
+import ParallaxImage from "@/components/ui/ParallaxImage";
 import Image from "next/image";
 
 
@@ -40,12 +42,14 @@ export default function Projects() {
           >
             {/* IMAGE */}
             <div className="overflow-hidden">
-              <Image
-                src={p.img}
-                alt={p.title}
-                width={1000} height={1000} loading="eager"
-                className="h-52 w-full object-cover group-hover:scale-110 transition duration-500"
-              />
+              <ParallaxImage>
+                <Image
+                  src={p.img}
+                  alt={p.title}
+                  width={1000} height={1000} loading="eager"
+                  className="h-52 w-full object-cover group-hover:scale-110 transition duration-500"
+                />
+              </ParallaxImage>
             </div>
 
             {/* CONTENT */}

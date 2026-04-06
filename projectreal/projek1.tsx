@@ -1,29 +1,59 @@
-"use client"
+"use client";
+
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import Lenis from "@studio-freight/lenis";
 
 export default function Home() {
+  const ref = useRef(null);
+
+  // Smooth scroll (Apple-like)
+  useEffect(() => {
+    const lenis = new Lenis({
+      smoothWheel:true,
+      lerp: 0.08,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+  }, []);
+
+  // Parallax scroll
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [120, -120]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [5, -5]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.1]);
+
   return (
-    <main className="font-sans bg-white text-gray-900">
+    <main ref={ref} className="font-sans bg-white text-gray-900 overflow-x-hidden">
       {/* HERO */}
-      <section className="py-24 bg-linear-to-br from-white to-gray-100">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+      <section className="py-28 bg-linear-to-br from-white to-gray-100">
+        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
-              Bangun Website Premium untuk Bisnis Anda 🚀
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+              Website Premium yang Terasa Seperti Produk Apple 🍎
             </h1>
             <p className="text-gray-600 mb-8 text-lg">
-              Website cepat, modern, dan SEO-friendly untuk meningkatkan
+              Smooth, cepat, dan modern. Dibuat untuk meningkatkan
               kredibilitas dan penjualan bisnis Anda.
             </p>
             <div className="flex gap-4">
               <a
                 href="#contact"
-                className="bg-black text-white px-8 py-3 rounded-2xl shadow-lg hover:scale-105 transition"
+                className="bg-black text-white px-8 py-3 rounded-2xl shadow-xl hover:scale-105 transition"
               >
                 Konsultasi Gratis
               </a>
@@ -36,102 +66,71 @@ export default function Home() {
             </div>
           </motion.div>
 
+          {/* 3D PARALLAX CARD */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white shadow-2xl rounded-3xl p-6"
+            style={{ y, rotate, scale }}
+            className="bg-white shadow-[0_20px_60px_rgba(0,0,0,0.15)] rounded-3xl p-6 perspective-1000"
           >
-            <div className="h-75 bg-gray-200 rounded-xl" />
+            <div className="h-80 bg-linear-to-br from-gray-200 to-gray-300 rounded-xl" />
           </motion.div>
         </div>
       </section>
 
-      {/* TRUST */}
-      <section className="py-12">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-          {["20+ Project", "100% Client Puas", "Fast & SEO"].map(
-            (item, i) => (
-              <div
-                key={i}
-                className="p-6 bg-white rounded-2xl shadow hover:shadow-xl transition"
-              >
-                <h3 className="text-xl font-bold">{item}</h3>
-              </div>
-            )
-          )}
-        </div>
-      </section>
-
       {/* SERVICES */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-24">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            Layanan Kami
+          <h2 className="text-4xl font-bold text-center mb-14">
+            Layanan Premium
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Company Profile",
-                desc: "Tingkatkan kredibilitas bisnis dengan website profesional.",
-              },
-              {
-                title: "Landing Page",
-                desc: "Optimasi penjualan dengan halaman yang fokus conversion.",
-              },
-              {
-                title: "Booking System",
-                desc: "Sistem reservasi otomatis untuk bisnis Anda.",
-              },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="p-8 bg-white rounded-3xl shadow hover:shadow-2xl transition"
-              >
-                <h3 className="text-2xl font-semibold mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600">{item.desc}</p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-10">
+            {["Company Profile", "Landing Page", "Booking System"].map(
+              (item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.2 }}
+                  whileHover={{ rotateX: 5, rotateY: -5, scale: 1.05 }}
+                  className="p-8 bg-white rounded-3xl shadow-xl transition"
+                >
+                  <h3 className="text-2xl font-semibold mb-3">{item}</h3>
+                  <p className="text-gray-600">
+                    Solusi website modern dan powerful untuk bisnis Anda.
+                  </p>
+                </motion.div>
+              )
+            )}
           </div>
         </div>
       </section>
 
       {/* PORTFOLIO */}
-      <section id="portfolio" className="py-20">
+      <section id="portfolio" className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">
+          <h2 className="text-4xl font-bold text-center mb-14">
             Portfolio
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <div
+          <div className="grid md:grid-cols-3 gap-10">
+            {[1, 2, 3].map((item, i) => (
+              <motion.div
                 key={item}
-                className="group bg-white rounded-3xl overflow-hidden shadow hover:shadow-2xl transition"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white rounded-3xl overflow-hidden shadow-xl"
               >
-                <div className="h-48 bg-gray-200 group-hover:scale-105 transition" />
+                <div className="h-52 bg-gray-200" />
                 <div className="p-6">
                   <h3 className="font-semibold text-lg">Project {item}</h3>
                   <p className="text-gray-600 text-sm">
                     Website modern untuk meningkatkan bisnis.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* TESTIMONI */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold mb-12">Testimoni</h2>
-          <div className="p-8 bg-white rounded-3xl shadow-lg">
-            <p className="text-gray-600 text-lg mb-4">
-              "Website sangat cepat dan membantu meningkatkan bisnis kami!"
-            </p>
-            <span className="font-semibold">- Client</span>
           </div>
         </div>
       </section>
@@ -139,19 +138,19 @@ export default function Home() {
       {/* CTA */}
       <section
         id="contact"
-        className="py-24 bg-black text-white text-center"
+        className="py-28 bg-black text-white text-center"
       >
         <h2 className="text-4xl font-bold mb-6">
-          Siap Meningkatkan Bisnis Anda?
+          Siap Naik Level?
         </h2>
         <p className="mb-8 text-gray-300">
-          Konsultasikan kebutuhan website Anda sekarang juga.
+          Website Anda bisa terasa seperti produk premium.
         </p>
         <a
           href="https://wa.me/"
           className="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:scale-105 transition"
         >
-          Hubungi via WhatsApp
+          Hubungi Sekarang
         </a>
       </section>
     </main>
