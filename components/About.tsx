@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import ParallaxImage from "./ui/ParallaxImage";
 import Image from "next/image";
+import Title from "./ui/Tittle";
 
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-6 grid md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
+    <section id="about" className="py-20 px-6 grid md:grid-cols-2 gap-10 items-center max-w-6xl mx-auto bg-linear-to-br from-blue  to-gray-950">
       <ParallaxImage>
         {/* IMAGE */}
         <Image alt="backend" loading="eager" width={1000} height={1000}
@@ -15,8 +16,7 @@ export default function About() {
       </ParallaxImage>
       {/* TEXT */}
       <div> <ParallaxImage>
-        <h2 className="text-3xl font-bold mb-4 text-center">About Me</h2>
-       
+       <Title nama={"About"} />
           <p className=" text-gray-400 text-justify sm:text-left md:text-lg leading-relaxed">
             Sebagai <span className="text-2xl text-blue-800">Fullstack Web Developer</span>, saya mengkhususkan diri dalam membangun website dan aplikasi berbasis Next.js dengan standar modern dan performa tinggi. Saya berpengalaman dalam mengembangkan sistem end-to-end, mulai dari desain arsitektur hingga implementasi dan optimasi.
 

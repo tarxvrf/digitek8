@@ -12,8 +12,10 @@ function Home() {
  <Projek3/>
    <Projek2/>
   */} 
-
+<div className="bg-gray-950">
    <Dashboard/>
+</div>
+  
    </>
    
   )

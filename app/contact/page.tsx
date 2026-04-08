@@ -1,3 +1,4 @@
+import Title from "@/components/ui/Tittle";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Contact() {
@@ -12,9 +13,7 @@ export default function Contact() {
 
         {/* LEFT SIDE */}
         <div>
-          <h2 className="text-4xl font-bold mb-4">
-            Let’s Work Together 🚀
-          </h2>
+         <Title nama="Lets Work Together"/>
 
           <p className="text-gray-400 mb-8">
             Punya project atau ide? Saya siap membantu membangun solusi digital terbaik untuk bisnis Anda.

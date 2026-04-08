@@ -1,3 +1,4 @@
+import Title from "@/components/ui/Tittle";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,9 +23,7 @@ const services = [
 export default function Services() {
   return (
     <section id="services" className="py-20 px-6">
-      <h2 className="text-3xl font-bold text-center mb-10">
-        Services
-      </h2>
+     <Title nama="Services"/>
 
       <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {services.map((s, i) => (

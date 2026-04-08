@@ -22,6 +22,7 @@ function Dashboard() {
   }, []);
   return (
     <>
+    
       <Hero />
       
       <About />
