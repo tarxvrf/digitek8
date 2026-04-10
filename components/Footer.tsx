@@ -43,7 +43,7 @@ export default function Footer() {
           <h3 className="text-white font-semibold mb-4">Contact</h3>
           <ul className="flex flex-col gap-2 text-sm">
             <li>Email: digitek8mail@gmail.com</li>
-            <li>Phone: +62-85811293229</li>
+            <li>Phone: +62-8118783004</li>
             <li>Indonesia</li>
           </ul>
 
